@@ -2,6 +2,7 @@
  **
  ** Copyright (C) 2014 - 2015 Jolla Ltd.
  ** Copyright (C) 2020 Open Mobile Platform LLC.
+ ** Copyright (C) 2023 Peter G.
  **
  ****************************************************************************/
 
@@ -14,10 +15,8 @@ import "shared"
 SocialMediaAccountDelegate {
     id: delegateItem
 
-    //: VK News
-    //% "News"
-    headerText: qsTrId("lipstick-jolla-home-la-vk_posts")
-    headerIcon: "image://theme/graphic-service-vk"
+    headerText: "GitHub Notifications"
+    headerIcon: "image://theme/github-mark"
 
     services: [ "Notifications"]
     socialNetwork: SocialSync.Github
@@ -26,14 +25,12 @@ SocialMediaAccountDelegate {
     model: GithubNotificationsModel {}
 
     delegate: GithubFeedItem {
-        downloader: delegateItem.downloader
-        imageList: model.images
         accountId: model.accounts[0]
         userRemovable: true
         animateRemoval: defaultAnimateRemoval || delegateItem.removeAllInProgress
 
         onRemoveRequested: {
-            delegateItem.model.remove(model.vkId)
+            delegateItem.model.remove(model.githubId)
         }
 
         onTriggered: {
@@ -51,8 +48,8 @@ SocialMediaAccountDelegate {
     expandedLabel: qsTrId("lipstick-jolla-home-la-show-more-in-vk")
     userRemovable: true
 
-    onHeaderClicked: Qt.openUrlExternally("https://m.vk.com/feed")
-    onExpandedClicked: Qt.openUrlExternally("https://m.vk.com/feed")
+    onHeaderClicked: Qt.openUrlExternally("https://github.com/notifications")
+    onExpandedClicked: Qt.openUrlExternally("https://github.com/notifications")
 
     onViewVisibleChanged: {
         if (viewVisible) {

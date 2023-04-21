@@ -17,10 +17,6 @@ SocialMediaFeedItem {
     width: parent.width
     avatarSource: model.avatar
 
-    property bool isRepost: notificationType.visible
-    property string formattedRepostTime
-
-    onRefreshTimeCountChanged: formattedRepostTime = Format.formatDate(model.repostTimestamp, Format.DurationElapsed)
 
     Column {
         id: content
@@ -47,27 +43,15 @@ SocialMediaFeedItem {
             textFormat: Text.PlainText
         }
 
-        LinkedText {
-            width: parent.width
-            maximumLineCount: 15
-            elide: Text.ElideRight
-            wrapMode: Text.Wrap
-            font.pixelSize: Theme.fontSizeSmall
-            shortenUrl: true
-            linkColor: Theme.highlightColor
-            plainText: model.body
-            visible: plainText !== ""
-        }
-
-        Text {
-            width: parent.width
-            maximumLineCount: 1
-            elide: Text.ElideRight
-            wrapMode: Text.Wrap
-            color: Theme.highlightColor
-            font.pixelSize: Theme.fontSizeSmall
-            text: item.formattedTime
-        }
+        //Text {
+        //    width: parent.width
+        //    maximumLineCount: 1
+        //    elide: Text.ElideRight
+        //    wrapMode: Text.Wrap
+        //    color: Theme.highlightColor
+        //    font.pixelSize: Theme.fontSizeSmall
+        //    text: item.formattedTime
+        //}
 
         Column {
             width: parent.width
@@ -80,82 +64,21 @@ SocialMediaFeedItem {
             }
 
             Item {
-                width: parent.width
-                height: repostIcon.height
-
-                Image {
-                    id: repostIcon
-                    source: "image://theme/icon-s-repost" + (item.highlighted ? "?" + Theme.highlightColor : "")
-                }
-
-                Text {
-                    anchors {
-                        left: repostIcon.right
-                        leftMargin: Theme.paddingMedium
-                        right: parent.right
-                        verticalCenter: repostIcon.verticalCenter
-                    }
-                    elide: Text.ElideRight
-                    opacity: .6
-                    text: model.repostOwnerName
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.primaryColor
-                    textFormat: Text.PlainText
-                }
-            }
-
-            Item {
                 width: 1
                 height: Theme.paddingSmall
             }
 
-            LinkedText {
-                width: parent.width
-                maximumLineCount: 15
-                elide: Text.ElideRight
-                wrapMode: Text.Wrap
-                font.pixelSize: Theme.fontSizeSmall
-                shortenUrl: true
-                color: item.pressed ? Theme.highlightColor : Theme.primaryColor
-                linkColor: Theme.highlightColor
-                plainText: model.repostText
-                visible: plainText !== ""
-            }
-
-            Text {
-                text: item.formattedRepostTime
-                maximumLineCount: 1
-                elide: Text.ElideRight
-                wrapMode: Text.Wrap
-                color: item.highlighted ? Theme.secondaryHighlightColor : Theme.highlightColor
-                font.pixelSize: Theme.fontSizeExtraSmall
-                textFormat: Text.PlainText
-            }
         }
     }
 
     function notificationTypeText(notificationType) {
         if (notificationType !== "") {
             switch (notificationType) {
-            case "link":
-                //: User shared a link in VK
-                //% "Shared link"
-                return qsTrId("lipstick-jolla-home-la-vk_shared_link")
-            case "video":
-                //: User shared a video in VK
-                //% "Shared video"
-                return qsTrId("lipstick-jolla-home-la-vk_shared_video")
-            case "photo":
-                //: User shared a photo in VK
-                //% "Shared photo"
-                return qsTrId("lipstick-jolla-home-la-vk_shared_photo")
+            case "issue":
+                return "Issue"
             }
-
-            //: User shared a post in VK
-            //% "Shared post"
-            return qsTrId("lipstick-jolla-home-la-vk_shared_post")
+            return "Notification"
         }
-
         return ""
     }
 }
