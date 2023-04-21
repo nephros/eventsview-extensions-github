@@ -19,13 +19,13 @@ SocialMediaAccountDelegate {
     headerText: qsTrId("lipstick-jolla-home-la-vk_posts")
     headerIcon: "image://theme/graphic-service-vk"
 
-    services: ["Posts", "Notifications"]
-    socialNetwork: SocialSync.VK
+    services: [ "Notifications"]
+    socialNetwork: SocialSync.Github
     dataType: SocialSync.Notifications
 
-    model: VKPostsModel {}
+    model: GithubNotificationsModel {}
 
-    delegate: VKFeedItem {
+    delegate: GithubFeedItem {
         downloader: delegateItem.downloader
         imageList: model.images
         accountId: model.accounts[0]
