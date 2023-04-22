@@ -16,7 +16,9 @@ SocialMediaAccountDelegate {
     id: delegateItem
 
     headerText: "GitHub Notifications"
-    headerIcon: "image://theme/github-mark"
+    headerIcon: ( Theme.colorScheme === Theme.LightOnDark ) ? "image://theme/github-mark-white" : "image://theme/github-mark"
+
+    property var accountIdFilter
 
     services: [ "Notifications"]
     socialNetwork: SocialSync.Github
@@ -25,7 +27,7 @@ SocialMediaAccountDelegate {
     model: GithubNotificationsModel {}
 
     delegate: GithubFeedItem {
-        accountId: model.accounts[0]
+        //accountId: model.accounts[0]
         userRemovable: true
         animateRemoval: defaultAnimateRemoval || delegateItem.removeAllInProgress
 
@@ -44,8 +46,8 @@ SocialMediaAccountDelegate {
         }
     }
 
-    //% "Show more in VK"
-    expandedLabel: qsTrId("lipstick-jolla-home-la-show-more-in-vk")
+    //% "Show more"
+    expandedLabel: qsTrId("lipstick-jolla-home-la-show-more")
     userRemovable: true
 
     onHeaderClicked: Qt.openUrlExternally("https://github.com/notifications")
