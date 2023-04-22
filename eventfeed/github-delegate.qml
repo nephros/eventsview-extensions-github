@@ -31,8 +31,12 @@ SocialMediaAccountDelegate {
         userRemovable: true
         animateRemoval: defaultAnimateRemoval || delegateItem.removeAllInProgress
 
-        onRemoveRequested: {
-            delegateItem.model.remove(model.githubId)
+        //onRemoveRequested: {
+        //    delegateItem.model.remove(model.githubId)
+        //}
+
+        onClicked: {
+            Qt.openUrlExternally(model.link)
         }
 
         onTriggered: {

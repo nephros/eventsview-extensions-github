@@ -2,6 +2,7 @@
  **
  ** Copyright (C) 2014 - 2016 Jolla Ltd.
  ** Copyright (C) 2020 Open Mobile Platform LLC.
+ ** Copyright (C) 2023 Peter G.
  **
  ****************************************************************************/
 
@@ -13,9 +14,14 @@ import "shared"
 SocialMediaFeedItem {
     id: item
 
-    contentHeight: Math.max(content.height, avatar.height) + Theme.paddingMedium * 3
+    //contentHeight: Math.max(content.height, avatar.height) + Theme.paddingMedium * 3
+    contentHeight: Math.max(content.height, avatar.height)
     width: parent.width
-    avatarSource: model.avatar ? model.avatar : ( ( Theme.colorScheme === Theme.LightOnDark ) ? "image://theme/github-mark-white" : "image://theme/github-mark" )
+    avatarSource: Qt.resolvedUrl(model.avatar)
+    //fallbackAvatarSource: ( Theme.colorScheme === Theme.LightOnDark ) ? "image://theme/github-mark-white" : "image://theme/github-mark"
+    fallbackAvatarSource: Qt.resolvedUrl(model.avatar)
+    // input for formattedTime
+    timestamp: model.createdTime
 
     Column {
         id: content
@@ -27,7 +33,9 @@ SocialMediaFeedItem {
             width: parent.width
             truncationMode: TruncationMode.Fade
             elide: Text.ElideRight
-            font.pixelSize: Theme.fontSizeMedium
+            maximumLineCount: 2
+            wrapMode: Text.Wrap
+            font.pixelSize: Theme.fontSizeSmall
             color: Theme.primaryColor
             textFormat: Text.PlainText
             text: model.title
@@ -52,7 +60,7 @@ SocialMediaFeedItem {
         Label { id: notificationRepo
             width: parent.width
             truncationMode: TruncationMode.Fade
-            font.pixelSize: Theme.fontSizeSmall
+            font.pixelSize: Theme.fontSizeExtraSmall
             color: Theme.primaryColor
             visible: text !== ""
             textFormat: Text.PlainText
@@ -61,20 +69,20 @@ SocialMediaFeedItem {
         Label { id: notificationType
             width: parent.width
             truncationMode: TruncationMode.Fade
-            font.pixelSize: Theme.fontSizeSmall
+            font.pixelSize: Theme.fontSizeExtraSmall
             color: Theme.primaryColor
             visible: text !== ""
             textFormat: Text.PlainText
             text: model.type
         }
 
-        Text {
+        Label {
             width: parent.width
             maximumLineCount: 1
             elide: Text.ElideRight
             wrapMode: Text.Wrap
-            color: Theme.highlightColor
-            font.pixelSize: Theme.fontSizeSmall
+            color: Theme.secondaryColor
+            font.pixelSize: Theme.fontSizeExtraSmall
             text: (item.formattedTime) ? item.formattedTime : model.createdTime
         }
     }
