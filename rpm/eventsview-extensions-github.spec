@@ -10,7 +10,7 @@ Name:       eventsview-extensions-github
 %define eve-version 0.1.9
 
 Summary:    Eventsview plugin for GitHub notifications
-Version:    0.1.0
+Version:    0.1.1
 Release:    0
 Group:      Applications
 License:    ASL 2.0
