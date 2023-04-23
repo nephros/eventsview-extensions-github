@@ -9,17 +9,17 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Sailfish.TextLinking 1.0
+import org.nemomobile.socialcache 1.0
 import "shared"
 
 SocialMediaFeedItem {
     id: item
 
-    //contentHeight: Math.max(content.height, avatar.height) + Theme.paddingMedium * 3
-    contentHeight: Math.max(content.height, avatar.height)
+    contentHeight: Math.max(content.height, avatar.height) + Theme.paddingMedium * 3
     width: parent.width
     avatarSource: Qt.resolvedUrl(model.avatar)
-    //fallbackAvatarSource: ( Theme.colorScheme === Theme.LightOnDark ) ? "image://theme/github-mark-white" : "image://theme/github-mark"
     fallbackAvatarSource: Qt.resolvedUrl(model.avatar)
+    downloader: SocialImageCache{}
     // input for formattedTime
     timestamp: model.createdTime
 
