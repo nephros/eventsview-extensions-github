@@ -18,8 +18,6 @@ SocialMediaAccountDelegate {
     headerText: "GitHub Notifications"
     headerIcon: ( Theme.colorScheme === Theme.LightOnDark ) ? "image://theme/github-mark-white" : "image://theme/github-mark"
 
-    property var accountIdFilter
-
     services: [ "Notifications"]
     socialNetwork: SocialSync.Github
     dataType: SocialSync.Notifications
@@ -27,13 +25,13 @@ SocialMediaAccountDelegate {
     model: GithubNotificationsModel {}
 
     delegate: GithubFeedItem {
-        //accountId: model.accounts[0]
+        accountId: model.accounts[0]
         userRemovable: true
         animateRemoval: defaultAnimateRemoval || delegateItem.removeAllInProgress
 
-        //onRemoveRequested: {
-        //    delegateItem.model.remove(model.githubId)
-        //}
+        onRemoveRequested: {
+            delegateItem.model.remove(model.identifier)
+        }
 
         onClicked: {
             Qt.openUrlExternally(model.link)
