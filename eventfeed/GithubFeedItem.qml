@@ -41,13 +41,6 @@ SocialMediaFeedItem {
             text: model.title
         }
 
-        Label {
-            width: parent.width
-            truncationMode: TruncationMode.Fade
-            textFormat: Text.PlainText
-            text: model.name
-        }
-
         Label { id: notificationFrom
             width: parent.width
             truncationMode: TruncationMode.Fade
