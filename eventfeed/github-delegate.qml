@@ -30,7 +30,7 @@ SocialMediaAccountDelegate {
         animateRemoval: defaultAnimateRemoval || delegateItem.removeAllInProgress
 
         onRemoveRequested: {
-            delegateItem.model.remove(model.identifier)
+            delegateItem.model.remove(model.threadId)
         }
 
         onClicked: {
