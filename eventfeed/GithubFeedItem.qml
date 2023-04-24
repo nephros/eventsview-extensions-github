@@ -146,5 +146,4 @@ SocialMediaFeedItem {
             text: (item.formattedTime) ? item.formattedTime : model.createdTime
         }
     }
-
 }

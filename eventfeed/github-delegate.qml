@@ -33,10 +33,6 @@ SocialMediaAccountDelegate {
             delegateItem.model.remove(model.threadId)
         }
 
-        onClicked: {
-            Qt.openUrlExternally(model.link)
-        }
-
         onTriggered: {
             Qt.openUrlExternally(model.link)
         }
@@ -48,8 +44,8 @@ SocialMediaAccountDelegate {
         }
     }
 
-    //% "Show more"
-    expandedLabel: qsTrId("lipstick-jolla-home-la-show-more")
+    //% "Show more on GitHub"
+    expandedLabel: qsTrId("lipstick-jolla-home-la-show-more-on-github")
     userRemovable: true
 
     onHeaderClicked: Qt.openUrlExternally("https://github.com/notifications")
