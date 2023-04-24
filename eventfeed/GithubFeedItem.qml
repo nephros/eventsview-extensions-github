@@ -36,7 +36,7 @@ SocialMediaFeedItem {
     avatar.opacity: Theme.opacityHigh
 
     // input for formattedTime
-    timestamp: model.createdTime
+    timestamp: model.timestamp
 
     property string contextId: model.url ? "#" + model.url.substr(model.url.lastIndexOf("/") + 1) : ""
 
