@@ -33,12 +33,15 @@ SocialMediaFeedItem {
             default: ""
         }
     }
-    avatar.opacity: Theme.opacityLow
+    avatar.opacity: Theme.opacityHigh
+
     // input for formattedTime
     timestamp: model.createdTime
 
     property string contextId: model.url ? "#" + model.url.substr(model.url.lastIndexOf("/") + 1) : ""
 
+    // avatars are public, so we don't need imageDownloader.
+    // Use it as an image under fallbackAvatarSource
     Image { id: avatarUnderlay
         anchors.fill: item.avatar
         anchors.centerIn: item.avatar
