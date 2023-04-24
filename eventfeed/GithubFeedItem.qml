@@ -54,6 +54,9 @@ SocialMediaFeedItem {
     avatarSource: "http://localhost/noimage" //Qt.resolvedUrl(model.avatar)
     fallbackAvatarSource: ghTypeIcon[model.type] || ""
 
+    avatar.sourceSize.width:  avatar.width - Theme.paddingSmall/2
+    avatar.sourceSize.height: avatar.height - Theme.paddingSmall/2
+
     avatar.opacity: Theme.opacityHigh
 
     // input for formattedTime
