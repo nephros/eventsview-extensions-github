@@ -34,6 +34,7 @@ SocialMediaAccountDelegate {
         }
 
         onTriggered: {
+            console.log("GHN triggered! Opening %1".arg(model.link))
             Qt.openUrlExternally(model.link)
         }
 

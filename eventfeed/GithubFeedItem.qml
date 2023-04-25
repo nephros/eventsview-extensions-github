@@ -50,6 +50,9 @@ SocialMediaFeedItem {
         "review_requested": '👀'
     }
 
+    // display issue/PR ID
+    property string contextId: model.url ? "#" + model.url.substr(model.url.lastIndexOf("/") + 1) : ""
+
     contentHeight: Math.max(content.height, avatar.height) + Theme.paddingMedium * 3
     width: parent.width
 
@@ -59,13 +62,8 @@ SocialMediaFeedItem {
     avatarSource: model.avatar
     fallbackAvatarSource: octicon["Repository"] || "https://primer.style/design/foundations/icons/repo-24"
 
-    avatar.opacity: Theme.opacityHigh
-
     // input for formattedTime
     timestamp: model.timestamp
-
-    // display issue/PR ID
-    property string contextId: model.url ? "#" + model.url.substr(model.url.lastIndexOf("/") + 1) : ""
 
     Image { id: avatarTypeOverlay
         height: item.avatar.height - Theme.paddingMedium
@@ -76,9 +74,11 @@ SocialMediaFeedItem {
         sourceSize.height: height
         visible: source !== ""
         smooth: false
+        opacity: Theme.opacityHigh
         source: item.octicon[model.type] || ""
     }
     Rectangle { id: avatarReasonOverlay
+        z: avatarTypeOverlay.z + 1
         anchors.right: item.avatar.right
         anchors.bottom: item.avatar.bottom
         width:  avatar.width/3
@@ -92,7 +92,7 @@ SocialMediaFeedItem {
             anchors.fill: parent
             visible: text !== ""
             font.pixelSize: parent.height // dynamic font size ;)
-            color: (Theme.colorScheme === Theme.LightOnDark) ? Theme.lightPrimaryColor : Theme.darkPrimaryColor
+            color: (Theme.colorScheme === Theme.LightOnDark) ? Theme.lightSecondaryColor : Theme.darkSecondaryColor
             text: item.reasonJi[model.reason] || ""
         }
     }
