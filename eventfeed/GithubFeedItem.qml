@@ -48,6 +48,7 @@ SocialMediaFeedItem {
         "assign":           '🎯',
         "comment":          '💬',
         "mention":          '✋',
+        "subscribed":       '👁',
         "team_mention":     '🙌',
         "review_requested": '👀'
     }
