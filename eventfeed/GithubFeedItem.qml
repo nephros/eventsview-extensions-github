@@ -47,10 +47,12 @@ SocialMediaFeedItem {
          */
         "assign":           '🎯',
         "comment":          '💬',
+        "invitation":       '📨',
         "mention":          '✋',
+        "review_requested": '👀'
+        "security_alert":   '⚠️',
         "subscribed":       '👁',
         "team_mention":     '🙌',
-        "review_requested": '👀'
     }
 
     // display issue/PR ID
