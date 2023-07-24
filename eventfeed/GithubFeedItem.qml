@@ -86,17 +86,22 @@ SocialMediaFeedItem {
         z: avatarTypeOverlay.z + 1
         anchors.right: item.avatar.right
         anchors.bottom: item.avatar.bottom
-        width:  avatar.width/3
-        height: avatar.height/3
+        //height: avatar.height/3
+        //width:  avatar.width/3
+        height: reasonIcon.height + 2
+        width: height
         radius: width/2
         visible: reasonIcon.text !== ""
         //color: (Theme.colorScheme === Theme.LightOnDark) ? Theme.darkSecondaryColor : Theme.lightSecondaryColor
-        color: Theme.overlayBackgroundColor
+        //color: Theme.overlayBackgroundColor
+        color: Theme.highlightDimmerColor
         Text { id: reasonIcon
             anchors.centerIn: parent
-            anchors.fill: parent
+            //anchors.fill: parent
+            horizontalAlignment: Text.AlignHCenter
             visible: text !== ""
-            font.pixelSize: parent.height // dynamic font size ;)
+            //font.pixelSize: parent.height // dynamic font size ;)
+            font.pixelSize: Theme.fontSizeTiny
             color: (Theme.colorScheme === Theme.LightOnDark) ? Theme.lightSecondaryColor : Theme.darkSecondaryColor
             text: item.reasonJi[model.reason] || ""
         }
