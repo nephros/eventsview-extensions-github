@@ -143,7 +143,7 @@ SocialMediaFeedItem {
             color: Theme.primaryColor
             visible: text !== ""
             textFormat: Text.PlainText
-            text: "%1 %2 (%3)".arg(model.type).arg(item.contextId).arg(item.reason.split("_").join(" "))
+            text: "%1 %2 (%3)".arg(model.type).arg(item.contextId).arg(model.reason.split("_").join(" "))
         }
 
         Label {
