@@ -106,17 +106,6 @@ SocialMediaFeedItem {
             text: item.reasonJi[model.reason] || ""
         }
     }
-    Label { id: avatarReasonLabel
-        z: avatarTypeOverlay.z + 1
-        anchors.horizontalCenter: item.avatar.horizontalCenter
-        anchors.top: item.avatar.bottom
-        width: avatar.width
-        color: Theme.highlightColor
-        truncationMode: TruncationMode.Fade
-        font.pixelSize: Theme.fontSizeTiny
-        font.capitalization: Font.Capitalize
-        text: model.reason.split("_").join(" ") || ""
-    }
 
     Column {
         id: content
@@ -154,7 +143,7 @@ SocialMediaFeedItem {
             color: Theme.primaryColor
             visible: text !== ""
             textFormat: Text.PlainText
-            text: model.type + " " + item.contextId
+            text: "%1 %2 (%3)".arg(model.type).arg(item.contextId).arg(item.reason.split("_").join(" "))
         }
 
         Label {
