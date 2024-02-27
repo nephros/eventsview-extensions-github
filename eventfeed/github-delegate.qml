@@ -34,8 +34,25 @@ SocialMediaAccountDelegate {
         }
 
         onTriggered: {
-            console.log("GHN triggered! Opening %1".arg(model.link))
-            Qt.openUrlExternally(model.link)
+            console.log("GHN triggered! Opening %1".arg(model.url))
+            // FIXME: this should really have been resolved by doing another trip to api.github.com in buteo.
+            var query = Qt.resolvedUrl(model.url);
+            var r = new XMLHttpRequest();
+            r.open('GET', query);
+            r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            r.setRequestHeader('Accept', 'application/vnd.github+json');
+            r.onreadystatechange = function(event) {
+                if (r.readyState == XMLHttpRequest.DONE) {
+                    } else if (r.status === 200 || r.status == 0) {
+                        var rdata = JSON.parse(r.response);
+                        Qt.openUrlExternally(rdata.html_url)
+                    } else {
+                        console.debug("error in processing request.", query, r.status, r.statusText);
+                        Qt.openUrlExternally("https://gitbub.com/notifications/threads/" + model.threadId)
+                    }
+                }
+            }
+            r.send();
         }
 
         Component.onCompleted: {
